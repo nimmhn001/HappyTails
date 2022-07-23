@@ -70,7 +70,6 @@ app.get('/', function(req, res)
     }    
     else
     {    
-        //console.log("user - >  ", req.user);
         var cart = new Cart(req.session.cart ? req.session.cart: {});
         Product.find({}, function(err, foundItems)
         {
@@ -207,7 +206,6 @@ app.get("/cart/:id", function(req, res, next)
         }
         cart.add(product, productId);
         req.session.cart = cart;
-        //console.log(req.session.cart);
         res.redirect("/shopping-cart");
     })
 });
@@ -280,7 +278,6 @@ app.get("/checkout", isLoggedIn, function(req, res, next)
     {
         let cnt = 0;
         cnt = item.item.totalOrders + item.qty;
-        //console.log("cnt - > ", cnt);
         Product.findOneAndUpdate({name : item.item.name}, {$set: {totalOrders: cnt}}, {new: true}, function(err, result){console.log("prodcts - > ", result)});
     });
     let orders_cnt = req.user.orders;
@@ -315,7 +312,6 @@ app.post("/checkout", isLoggedIn, function(req, res, next)
         var best_selling  = {};
         sales = sales_rec;
         id = sales_rec._id;
-        //console.log("id - >", id);
         sales.totalSales += cart.totalPrice;
         sales.totalOrders += cart.totalQty;
         if(sales.bestSelling)
@@ -327,16 +323,11 @@ app.post("/checkout", isLoggedIn, function(req, res, next)
            {
                 if(err)
                     console.log(err);
-                //console.log("foundItem - > ", foundItem);
-                //console.log("best - > ", best);
                 else if(best < foundItem.totalOrders)
                 {
                     best = foundItem.totalOrders;
                     best_selling = foundItem;
-                    //console.log("best-selling inside - > ", best_selling);
-                    //console.log("best - > ", best);
-                    //console.log("best-selling - > ", best_selling);
-                    Sales.findByIdAndUpdate(id, {$set: {totalOrders: sales.totalOrders, totalSales: sales.totalSales, bestSelling: best_selling}},  {new: true}, function(err, output){console.log("perfect")});
+                    Sales.findByIdAndUpdate(id, {$set: {totalOrders: sales.totalOrders, totalSales: sales.totalSales, bestSelling: best_selling}},  {new: true}, function(err, output){});
                 }
            });
           
@@ -357,7 +348,6 @@ app.post("/checkout", isLoggedIn, function(req, res, next)
 
 function isLoggedIn(req, res, next)
 {
-     //console.log(req.body);
     if(req.isAuthenticated())
     {
        return next(); // next() is like saying to continue
@@ -389,37 +379,3 @@ app.listen(PORT, function()
 
 
 
-
-// COMMENTED CODES
-//mine:
-// app.post("/signup", function(req,res)
-// {
-//     var name = _.capitalize(req.body.name);
-//     var uname = req.body.username;
-//     var pwd = req.body.password;
-//     const cust = new Customer({
-//         name: name,
-//         uname:uname,
-//         pwd: pwd 
-//     });
-//     Customer.findOne({uname: uname}, function(err, result)
-//     {
-//         //console.log(result);
-//         if(result)
-//         {
-//             active_user = result;
-//             Product.find({}, function(err, foundItems)
-//             {
-//                 res.render("home", {name: "Welcome " + result.name + " !", items:foundItems, status: "View Details"});
-//             });
-//         }
-//         else
-//         {
-//             cust.save();
-//             username = cust.uname;
-//             active_user = cust;
-//             console.log(username);
-//             res.redirect("/success");
-//         }
-//     });
-// });
