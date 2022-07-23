@@ -53,19 +53,14 @@ function(req, username, password, done)
         var lname = req.body.lname;
         fname = _.capitalize(fname);
         lname = _.capitalize(lname);
-        console.log("fname - >", fname);
-        console.log("lname - >", lname);
         let newName = fname + lname;
         if(lname)
             newUser.name = fname + " " +  lname;
         else
             newUser.name = fname; 
-        console.log("name - > ", newName);
         newName = _.toLower(newName);
-        console.log("name - > ", newName);
         for(let i = 0; i < newName.length; i++)
         {
-            console.log(newName[i]);
             if(!(newName[i] >= 'a' && newName[i] <= 'z'))
             {
                 return done(null, false, {message: "Invalid entry in the name field"});
@@ -113,7 +108,6 @@ function(req, username, password, done)
     }
     Customer.findOne({'uname': username}, function(err, user)
     {
-        //console.log(user);
         if(user.isAdmin)
             return done(null, user);
         if(err)
