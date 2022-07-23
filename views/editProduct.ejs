@@ -1,0 +1,62 @@
+<%- include('partials/head_admin') -%>
+
+<div class="sidebar">
+    <a href="/user/admin">Home</a>
+    <a href="/user/users">Users</a>
+    <a href="/user/orders">Orders</a>
+    <a href="/user/edit">Account</a>
+    <a class = "active" href="/products">Products</a>
+</div>
+
+<div class="content">
+  <div class = "head-bar">
+    <nav class = "navbar navbar-expand-lg" >
+        <a class = "head" href = "/"><h1 class = "brandname"><i class="fas fa-dog"></i>Happy Tails</h1></a>
+    </nav>
+    <h2 class="font-weight-bold" style = "padding-left: 2%;">ADMIN PAGE</h2>
+    <hr>
+</div>
+  
+    <form action = "/editproduct/<%=product._id%>", method = "post">
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+            <span class="input-group-text">Name: </span>
+        </div>
+            <input type="text" class="form-control" name = "name" value = "<%=product.name%>">
+          </div>
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text">Price:  $</span>
+            </div>
+            <input name = "price" type="text" class="form-control" value = "<%=product.price%>" >
+          </div>
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text">Image path</span>
+            </div>
+            <input name = "img" type="text" class="form-control"  value = "<%=product.imagePath%>">
+          </div>
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text">Description: </span>
+            </div>
+            <input name = "desc" type = "text" class="form-control" style = "width: 50%"value = "<%=product.details%>"></input>
+          </div>
+          <div class="input-group mb-3" style = "padding-top: 1%;">
+            <div class="input-group-prepend">
+                <span class="input-group-text">Rating on 10: </span>
+              </div>
+            <input name = "rating" type="text" class="form-control" value = "<%=product.rating%>">
+          </div>
+          <p><button class="btn btn-outline-success my-2 my-sm-0 button" style ="margin-bottom: 5%;"  type = "submit">Submit Changes</button>
+          <input type = "hidden" name = "_csrf" value = "<%=token%>" >
+    </form>
+    <div>
+        <a href = "/products"><button class="btn btn-outline-danger my-2 my-sm-0 button" style = "margin-bottom: 5%;"  type = "submit">Don't Change</button></a>
+   
+    </div>
+    </div>
+    
+</body>
+
+</html>

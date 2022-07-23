@@ -1,0 +1,96 @@
+<%- include('partials/head_admin') -%>
+
+<div class="sidebar">
+    <a href="/user/admin">Home</a>
+    <a href="/user/users">Users</a>
+    <a href="/user/orders">Orders</a>
+    <a href="/user/edit">Account</a>
+    <a class = "active" href="/products">Products</a>
+</div>
+
+<div class="content">
+  <div class = "head-bar" style = "margin-bottom: 2%; margin-top: 1%;">
+    <nav class = "navbar navbar-expand-lg" >
+        <a class = "head" href = "/"><h1 class = "brandname"><i class="fas fa-dog"></i>Happy Tails</h1></a>
+    </nav>
+    <h2 class="font-weight-bold" style = "padding-left: 2%;">ADMIN PAGE</h2>
+    <hr>
+</div>
+   
+
+  <h2 style = "margin-bottom: 1%;">PRODUCTS INVENTORY</h2>
+
+  
+  <% if(add == 1){ %>
+    <form action = "/products/add", method = "post">
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text">Name: </span>
+          </div>
+            <input type="text" class="form-control" name = "name" required>
+          </div>
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text">Price:  $</span>
+            </div>
+            <input name = "price" type="number" class="form-control" required>
+          </div>
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text">Image path</span>
+            </div>
+            <input name = "img" type="text" class="form-control" >
+          </div>
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text">Description: </span>
+            </div>
+            <textarea name = "desc" class="form-control"></textarea>
+          </div>
+          <div class="input-group mb-3" style = "padding-top: 1%;">
+            <input name = "rating" type="text" class="form-control" placeholder="Rating on 10">
+          </div>
+          <p><button class="btn btn-outline-success my-2 my-sm-0" style ="margin-bottom: 5%;"  type = "submit">Done</button>
+          <input type = "hidden" name = "_csrf" value = "<%=token%>" >
+    </form>
+    <a href = "/products"><button class="btn btn-outline-danger my-2 my-sm-0" style = "margin-bottom: 5%;"  type = "submit">Don't Add</button></a>
+    <%}else{%>
+        <a href = "/products/add">  <button class="btn btn-outline-info my-2 my-sm-0" type = "button">Add new</button></a></p>
+    <%}%>
+      
+  <% if(success_msg){%>
+    <div type = "button" id = "success" class = "alert alert-success">
+      <%=success_msg%>
+    </div>
+<%}%>
+        <% if(items){ %>
+            <h4 style = "margin: 1%;">Total No. : <%=items.length%></h4>
+            <%items.forEach(function(item){%>
+        <div class="row mb-4 d-flex justify-content-between align-items-center">
+        <div class="col-md-2 col-lg-2 col-xl-2">
+            <img
+            src="<%=item.imagePath%>" alt="pet" style = "height: 80%; width: 80%;">
+        </div>
+        <div class="col-md-3 col-lg-3 col-xl-3">
+            <h5 class="text-black mb-0"><%=item.name%></h5>
+        </div>
+        <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
+            <h5 class="mb-0">$ <%=item.price%></h5>
+        </div>
+        <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
+          <a href = "/editproduct/<%=item._id%>" style = "color: teal;">EDIT</a>
+       </div>
+        <div class="col-md-1 col-lg-1 col-xl-1 text-end">
+            <a href="/remove/<%=item._id%>" class="text-muted"><i class="fas fa-times"></i></a>
+        </div>
+        </div>
+        <hr class="my-4">
+        <%})%>
+        <%}%>
+</div>
+   
+
+</body>
+
+</html>
+

@@ -1,0 +1,68 @@
+<%- include('partials/head_admin') -%>
+<div class="sidebar">
+    <a href="/user/admin">Home</a>
+    <a class = "active" href="/user/users">Users</a>
+    <a href="/user/orders">Orders</a>
+    <a href="/user/edit">Account</a>
+    <a href="/products">Products</a>
+</div>
+
+<div class="content">
+    <div class = "head-bar" style = "margin-bottom: 2%; margin-top: 1%;">
+        <nav class = "navbar navbar-expand-lg" >
+            <a class = "head" href = "/"><h1 class = "brandname"><i class="fas fa-dog"></i>Happy Tails</h1></a>
+        </nav>
+        <h2 class="font-weight-bold" style = "padding-left: 2%;">ADMIN PAGE</h2>
+        <hr>
+    </div>
+   
+
+  <h2 style = "margin-bottom: 1%;">USERS LIST</h2>
+    <h3>Total Number Of Users : <%=users.length - 1%></h3>
+    <%let cnt = 1%>
+    <% let b = 1 %>
+    <form class="form-inline my-2 my-lg-0" action = "/user/users" method = "post" style = "padding-bottom: 1%;">
+        <input class="form-control mr-sm-2" type="text" placeholder="Search by name or ID" name = "inputName">
+        <button class="btn btn-outline-info my-2 my-sm-0"  type = "submit">Search</button>
+        <input type = "hidden" name = "_csrf" value = "<%=token%>" >
+    </form>
+    <div class="btn-group" style = "padding-bottom: 1%;">
+        <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Sort</button>
+        <div class="dropdown-menu">
+          <a class="dropdown-item" href="/user/sortName">By Name</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="/user/sortOrder">By Orders</a>
+        </div>
+      </div>
+    
+    <% if(flag === 1){%>
+  <ul class="list-group">
+    <% users.forEach(function(user){%>
+        <%if(!user.isAdmin){%>
+        <li class="list-group-item d-flex justify-content-between align-items-center list-group-item-action"><%=cnt%> . <%=user.name%> &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; ID : <%=user._id%> <span class="badge badge-info badge-pill"> Orders -> <%=user.orders%></span></li>
+        <% cnt++; %>
+        <%}%>
+    <%})%>
+  </ul>
+  <%}else{%>
+    <ul class="list-group">
+        <% users.forEach(function(user){%>
+            <%if(!user.isAdmin && arr[user._id] === 1){%>
+            <li class="list-group-item d-flex justify-content-between align-items-center list-group-item-action"><%=cnt%> . <%=user.name%> &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; ID : <%=user._id%> <span class="badge badge-info badge-pill"> Orders -> <%=user.orders%></span></li>
+            <% cnt++; %>
+            <%b = 0 %>
+            <%}%>
+        <%})%>
+        <%if(b == 1){%>
+            <h4>No User Found</h4>
+        <%}%>
+      </ul>
+    <%}%>
+    </div>
+
+
+</body>
+
+</html>
+
+<%- include('partials/footer') -%>

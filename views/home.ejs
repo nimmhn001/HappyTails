@@ -1,0 +1,221 @@
+
+   <%- include('partials/header') -%>
+    <!---------------------------Navigation bar------------------------------------>
+    <div class = "intro_block">
+    <div class = "container-fluid">
+        <nav class = "navbar navbar-expand-lg" >
+            <a class = "head" href = "/"><h1 class = "brandname"><i class="fas fa-dog"></i>Happy Tails</h1></a>
+            <button class="navbar-toggler bg-success btn-outline-dark" style = "background-color: rgb(245, 237, 237); opacity: inherit; border-radius: 20%;"type="button" data-toggle="collapse" data-target="#navbarSupportedContent" >
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <% if(successMsg){%>
+                    <div type = "button" id = "success" class = "alert alert-success">
+                      <%=successMsg%>
+                    </div>
+                <%}%>
+                <ul class = "navbar-nav ml-auto mt-2 mt-lg-0">
+                    <li class = "nav-item active">
+                        <a class = "nav-link" href = "#footer">Contact</a>
+                    </li>
+                     <li class = "nav-item">
+                        <a class = "nav-link" href = "#pricing">Pricing</a>
+                    </li>
+                     <li class = "nav-item">
+                        <a class = "nav-link" href = "#cta">Download</a>
+                    </li>
+                    <li class = "nav-item">
+                        <div class="dropdown">
+                            <button class="nav-link btn dropdown-toggle" style = "font-size: 1.5rem;"type="button" id="dropdownMenuButton" data-toggle="dropdown">
+                            <i class="fas fa-user fa-1.5x"></i>  
+                            </button>
+                            <div class="dropdown-menu" style = "background-color: rgb(234, 248, 247);">
+                                <% if(!login){ %>
+                                <a class = "nav-link" href = "/user/signup">Sign Up</a>
+                                <div class="dropdown-divider" style = "border: 0.5px solid rgb(34, 185, 160);"></div>
+                                <a class = "nav-link" href = "/user/signin">Log in</a>
+                                <%}else{%>
+                                <a class = "nav-link" href = "/user/profile">My Profile</a>
+                                <div class="dropdown-divider" style = "border: 0.5px solid rgb(34, 185, 160);"></div>
+                                <a class = "nav-link" href = "/user/logout">Logout</a>
+                                <%}%>
+                            </div>
+                          </div>
+                    </li>
+                     <li class = "nav-item">
+                        <a class = "nav-link" href = "/shopping-cart"> <i class="fas fa-shopping-cart fa-1.5x"></i>
+                            <% if(cart){%>
+                            <span class="badge badge-pill badge-success"><%=cart.totalQty%></span>
+                            <%}%>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <!------------------------------------------------------------------------->
+            <div class = "row" style = "margin-top: 3%;">
+                <div class = "col-lg-6">
+                    <img src = "https://cdn.shopify.com/s/files/1/0011/0552/articles/6wayscathealthyhappy_blog5_718x.jpg?v=1495754311"alt = "pet cat" class = "pet">
+                </div>
+                <div class = "col-lg-6">
+                    <h2 class = "intro"><%=name%> <i class="far fa-laugh-beam"></i></h2>
+                    <p class = "intro-para"> We bring you a variety of breeds and charming pets from across the globe that will fit you the best.</p>
+                    <p class = "intro-para">Over 500,000+ happy customers, Start looking for yours!</p>
+                    <p class = "intro-para"><button type = "button" class="btn btn-dark btn-lg download-button"><i class="fab fa-apple"></i> Download   </button>
+                    <button type = "button" class="btn btn-outline-dark btn-lg download-button"><i class="fab fa-google-play"></i> Download</button></p>
+                </div> 
+            </div> 
+        </div>
+    </div>
+    <section id = "features">
+        <div class = "row">
+            <div class = "feature-box col-lg-4">
+                <i class="icon fas fa-check-circle fa-4x"></i>
+                <h3 class = "feature">Easy to use</h3>
+                <p class = "f-para">Very easy-peasy & highly user-friendly, try it out now!</p>
+            </div>
+            <div class = "feature-box col-lg-4" >
+                <i class="icon fas fa-bullseye fa-4x"></i>
+                <h3 class = "feature">Elite Clientele</h3>
+                <p class = "f-para">We have all the dogs and cats, the greatest ones!</p>
+            </div>
+            <div class = "feature-box col-lg-4" >
+                <i class="icon fas fa-heart fa-4x"></i>
+                <h3 class = "feature">Guaranteed to Work</h3>
+            <p class = "f-para">Get satisfied with our work or we'll return your money.</p>
+            </div>
+        </div>  
+    </section>
+
+   <section id = "testimonials">
+    <div id="carousel-testimonial" class="carousel slide" data-ride="carousel" data-pause = "hover">
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <h2 class = "testimonial">"Such a great place to find pets! loved this cutie cat that I found here."</h2>
+            <img src = "https://thumbs.dreamstime.com/b/beautiful-young-woman-home-couch-pet-redhead-cat-113482242.jpg" class = "customer">
+            <em>Pam, New York</em>        
+          </div>
+          <div class="carousel-item">
+            <h2 class = "testimonial">"Got my 2 little puppies from here, healthy & smart I love them! Thank you Happy Tails!"</h2>
+            <img src = "https://thumbs.dreamstime.com/b/portrait-young-happy-indian-woman-looking-camera-home-office-close-up-business-eastern-confident-male-professional-smiling-215162678.jpg" class = "customer">
+            <em>Lata, Mumbai</em>
+          </div>
+          <div class="carousel-item">
+            <h2 class = "testimonial">"Got a cute and fun rabbit! it cheers me up every day, so grateful to have it"</h2>
+            <img src = "https://thumbs.dreamstime.com/t/portrait-young-happy-indian-business-man-executive-looking-camera-portrait-young-happy-indian-business-man-executive-214230764.jpg" class = "customer">
+            <em>Rohan, Chennai</em>   
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <section id = "press">
+        <img src = "https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/Business_Insider_Logo.svg/1200px-Business_Insider_Logo.svg.png" class = "logo">
+        <img src = "https://startup.info/wp-content/uploads/2020/02/techcrunch-logo-1.png" alt = "tc-logo" class = "logo">
+        <img src = "https://lolaredpr.com/wp-content/uploads/mashable-logo-e1486259514654.png" alt = "mash-logo" class = "logo">
+    </section>
+
+
+    <section id = "pricing">
+        <h1 class = "p">Pricing</h1>
+        <p class = "price-para"> Very affordable rates for your cute little one. Check out the latest deals and highly demanded pets below. Sign up now!</p>
+        <div class = "row">
+            <% items.forEach(function(item){%>
+                <div class = "col-lg-4">
+                    <div class="card border-info item">
+                        <div class = "card-header">
+                            <h3><%=item.name%></h3>
+                            <img class = "dog" src = <%=item.imagePath%> >
+                        </div>
+                         <div class = "card-body">
+                            <h2>$<%=item.price%></h2>
+                            <% if(status === 'Login/Sign Up'){%>
+                                <form action = "/user/signup" method = "get">
+                                    <button type="submit" class="btn btn-outline-info"><%=status%></button>
+                                </form>
+                            <% }else{ %>
+                            <form action = "/products/<%=item._id%>" method = "get">
+                                <button type="submit" class="btn  btn-outline-info"><%=status%></button>
+                            </form>
+                        <% } %>
+                        </div>
+                    </div>
+                </div>
+            <%})%>
+            <!-- <div class = "col-lg-4">
+                <div class="card border-info">
+                    <div class = "card-header">
+                        <h3>Labrador</h3>
+                        <img src = "https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/labrador-puppy-royalty-free-image-1626252338.jpg?crop=0.667xw:1.00xh;0.173xw,0&resize=640:*" class = "dog">
+                    </div>
+                     <div class = "card-body">
+                        <h2>$49</h2>
+                        <button type="button" class="btn btn-outline-info">Sign Up</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class = "col-lg-4">
+                <div class="card border-info">
+                    <div class = "card-header">
+                        <h3>Golden Retriever</h3>
+                        <img src = "gold.jpeg" class = "dog">
+                    </div>
+                     <div class = "card-body">     
+                        <h2>$65</h2>
+                        <button type="button" class="btn btn-outline-info">Sign Up</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class = "col-lg-4">
+                <div class="card border-info">
+                    <div class = "card-header">
+                        <h3>Rabbit babies</h3>
+                        <img src = "rabbit.jpeg" class = "dog">
+                    </div>
+                     <div class = "card-body">
+                        <h2>$5</h2>
+                        <button type="button" class="btn btn-outline-info">Sign Up</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class = "col-lg-4">
+                <div class="card border-info">
+                    <div class = "card-header">
+                        <h3>Pussy kittens</h3>
+                        <img src = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTT72BQC2k2WG5Na8MPobIRomuht3NXz-IHxQ&usqp=CAU" class = "dog">
+                    </div>
+                     <div class = "card-body">
+                        <h2>$12</h2>
+                        <button type="button" class="btn btn-outline-info">Sign Up</button>
+                    </div>
+                </div>
+            </div> 
+
+            <div class = "col-lg-4">
+                <div class="card border-info">
+                    <div class = "card-header">
+                        <h3>Pomeranian</h3>
+                        <img src = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQFcDkL45IuJXadf_rkWvRNwPBQ6c6ogW7qg&usqp=CAU" class = "dog" >
+                    </div>
+                    <div class = "card-body">
+                        <h2>$52</h2>
+                        <button type="button" class="btn btn-outline-info">Sign Up</button>
+                    </div>
+                </div>
+            </div> -->
+         </div>  
+    
+    </section>
+
+    <section id = "cta">
+        <h3 class = "cta-heading">Start looking for your pet now!</h3>
+        <button type = "button" class="btn btn-dark btn-lg download-button"><i class="fab fa-apple"></i> Download   </button>
+        <button type = "button" class="btn btn-outline-dark btn-lg download-button"><i class="fab fa-google-play"></i> Download</button>
+    </section>
+
+    <%- include('partials/footer') -%>
+  

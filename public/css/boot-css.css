@@ -1,0 +1,275 @@
+/* boot-css */
+
+/*--------  html tags--------  */
+
+/*-------- classes-------- */
+
+.container-fluid
+{
+  padding: 1% 15% 7%;
+}
+
+
+/*-------- Download buttons-------- */
+
+.download-button
+{
+  margin: 5% 3% 5% 0;
+}
+
+/* -------- Navigation bar--------  */
+
+/* buttons */
+.dropdown-toggle:hover
+{
+  outline: white;
+  background-color: none;
+}
+.navbar
+{
+  padding-left: 10px;
+  padding-right: 10px;
+}
+.head
+{
+  color: #1da370;
+  font-family:'Josefin Sans', sans-serif;
+}
+.head:hover
+{
+  text-decoration: none;
+}
+.nav-link 
+{
+  color: #1da370;
+  font-size: 1.5rem;
+  font-family:'Josefin Sans', sans-serif;
+}
+.nav-item
+{
+  padding:0 18px;
+}
+.nav-link:hover
+{
+  color: #59b39f;
+  transform: scale(1.1);
+}
+.fa-dog
+{
+  color:rgb(160, 105, 55);
+}
+.brandname
+{
+  margin-left: 10px;
+  font-size: 3.5rem;
+  font-weight: bold;
+  color: #1da370;  
+}
+
+.brandname:hover
+{
+  color: #1da370; 
+}
+.collapse
+{
+  margin:2%;
+}
+
+/* Intro-section */
+/* #bce2eb; */
+.intro_block
+{
+  /* background-color: rgb(191, 232, 240); */
+  background-image: url(bg2.jpg);
+  background-repeat: no-repeat;
+  background-size: 100%;
+  padding-bottom: 40px;
+  padding-top: 0px;
+  font-family:'Josefin Sans', sans-serif;
+}
+.intro
+{
+ 
+  text-align: center;
+  font-size: 3.5rem;
+  margin-top: 4%;
+}
+.intro-para
+{
+  text-align: center;
+  margin:  3%;
+  font-size: 1.2rem;
+  line-height: 1.2;
+  color: black;
+}
+.dog
+{
+  width:45%;
+}
+.pet
+{
+  width:75%;
+  margin-top: 4%;
+  margin-left: 3%;
+  padding-bottom: 50px;
+  padding-left: 30px;
+  padding-right: 10px;
+  margin-left: 30px;
+  visibility: hidden;
+}
+.p
+{
+  padding-bottom: 0;
+}
+
+/* Features section */
+
+#features
+{
+  padding: 7% 15%;
+  background-color: #eff7fa;
+}
+.f-para
+{
+  color:#8f8f8f
+}
+.feature-box
+{
+  text-align: center;
+  padding: 5%;
+  font-family:'Josefin Sans', sans-serif;
+}
+.icon
+{
+  color:  #6bcfe6;
+  margin-bottom:1rem;
+}
+.icon:hover
+{
+  color:  #1ec8ee;
+}
+/* Testimonial section */
+
+.testimonial
+{
+  text-align: center;
+}
+.customer
+{
+  width:30%;
+  margin: 20px;
+}
+#testimonials
+{
+  font-family:'Josefin Sans', sans-serif;
+  padding: 7% 15%;
+  text-align: center;
+  background-color: #afe5f1;
+}
+
+/* Press Section*/
+
+#press
+{
+  text-align: center;
+  background-color: #afe5f1;
+  padding-bottom: 3%;
+}
+.logo
+{
+  width: 250px;
+  margin:30px;
+}
+
+
+/* Pricing Section */
+
+#pricing
+{
+  font-family:'Josefin Sans', sans-serif;
+  padding: 100px;
+  text-align: center;
+  background-color: #eff7fa;
+}
+.price-para
+{
+  padding-left: 3%;
+  color:#8f8f8f
+}
+.card
+{
+  font-family:'Josefin Sans', sans-serif;
+  margin: 5%;
+  background-color: orange;
+}
+
+.item:hover
+{
+  transform: scale(1.1);
+}
+
+/* Cta Section */
+
+#cta
+{
+  font-family:'Josefin Sans', sans-serif;
+  background-color: #afe5f1;
+  text-align:center;
+  padding:7% 15%;
+}
+.cta-heading
+{
+  font-size:3.5rem;
+  line-height: 1.5;;
+}
+
+
+/* Footer Section */
+
+#footer
+{
+  font-family:'Josefin Sans', sans-serif;
+  text-align: center;
+  
+}
+/* #eff7fa; */
+.copy
+{
+  color:grey;
+}
+
+.footer-icon
+{
+  margin:20px 10px;
+  color: rgb(29, 28, 28);
+}
+.footer-icon:hover
+{
+  color: #89d9eb;
+}
+
+/* Media query */
+
+@media(max-width:991px)
+{
+  .intro_block
+  {
+    text-align: center;
+    background-image: none;
+    background-color: rgb(191, 232, 240);
+    margin-bottom: 0;
+  }
+  .row img
+  {
+    visibility: visible;
+  }
+  .intro
+  {
+    margin-top:0%;
+  }
+  .brandname
+  {
+    margin-left: 0%;
+  }
+}
+

@@ -1,0 +1,95 @@
+<%- include('./header') -%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+body {
+  margin: 0;
+  font-family:'Josefin Sans', sans-serif;
+  background-color:  #eff7fa;
+}
+
+.input-group-text
+{
+  background-color: #1da370;
+  color: white;
+}
+.list-group-item
+{
+    font-size: 1.2rem;
+}
+
+.button
+{
+  margin: 5% 3% 5% 0;
+}
+
+
+.card-body
+{
+    text-align: center;
+}
+
+span
+{
+    margin-right:2% ;
+}
+.sidebar {
+  margin: 0;
+  padding: 1%;
+  width: 200px;
+  background-color: rgb(191, 232, 240);
+  position: fixed;
+  height: 100%;
+  overflow: auto;
+}
+
+hr{
+    color: #1da370;
+}
+
+.sidebar a {
+  display: block;
+  color: black;
+  padding: 16px;
+  text-decoration: none;
+}
+ 
+.sidebar a.active {
+  background-color: #1da370;  
+  color: white;
+  border-radius: 3%;
+}
+
+.sidebar a:hover:not(.active) {
+  outline-color: #38a078; 
+  color: #1da370;
+}
+
+div.content {
+  margin-left: 200px;
+  padding: 1px 16px;
+  height: 1000px;
+}
+
+@media screen and (max-width: 700px) {
+  .sidebar {
+    width: 100%;
+    height: auto;
+    position: relative;
+  }
+  .sidebar a {float: left;}
+  div.content {margin-left: 0;}
+}
+
+@media screen and (max-width: 400px) {
+  .sidebar a {
+    text-align: center;
+    float: none;
+  }
+}
+</style>
+</head>
+
+<body>

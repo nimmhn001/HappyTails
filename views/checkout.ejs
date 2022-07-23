@@ -1,0 +1,96 @@
+<%- include('partials/header') -%>
+  <!---------------------------Navigation bar------------------------------------>
+  <nav class = "navbar navbar-expand-lg"  style = "background-color: rgb(191, 232, 240);">
+    <a class = "head" href = "/"><h1 class = "brandname"><i class="fas fa-dog"></i>Happy Tails</h1></a>
+    <button class="navbar-toggler bg-success btn-outline-dark" style = "background-color: rgb(245, 237, 237); opacity: inherit; border-radius: 20%;"type="button" data-toggle="collapse" data-target="#navbarSupportedContent" >
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class = "navbar-nav ml-auto mt-2 mt-lg-0">
+            <li class = "nav-item active">
+                <a class = "nav-link" href = "/#footer">Contact</a>
+            </li>
+             <li class = "nav-item">
+                <a class = "nav-link" href = "/#pricing">Pricing</a>
+            </li>
+             <li class = "nav-item">
+                <a class = "nav-link" href = "/#cta">Download</a>
+            </li>
+            <li class = "nav-item">
+                <div class="dropdown">
+                    <button class="nav-link btn dropdown-toggle" style = "font-size: 1.5rem;"type="button" id="dropdownMenuButton" data-toggle="dropdown">
+                    <i class="fas fa-user fa-1.5x"></i></button>
+                    <div class="dropdown-menu" style = "background-color: #eff7fa;">
+                        <a class = "nav-link" href = "/user/profile">My Profile</a>
+                        <div class="dropdown-divider" style = "border: 1px solid rgb(125, 223, 243);"></div>
+                        <a class = "nav-link" href = "/user/logout">Logout</a>
+                    </div>
+                    </div>
+            </li>
+                <li class = "nav-item">
+                    <a class = "nav-link" href = "/shopping-cart"> <i class="fas fa-shopping-cart fa-1.5x"></i>
+                        <% if(session.cart){%>
+                            <span class="badge badge-pill badge-success"><%=session.cart.totalQty%></span>
+                        <%}else{%>
+                            <span class="badge badge-pill badge-success">0</span>
+                        <%}%>
+                    </a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<div class="pt-5" style = "padding-left: 1%;">
+  <h6 class="mb-0"><a href="/#pricing" class="text-body"><i class="fas fa-long-arrow-alt-left me-2"></i><strong>BACK TO SHOP</strong></a></h6>
+</div>
+
+    <!------------------------------------------------------------------------->
+    <link rel = "stylesheet" href = "https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css">
+    <body style = "background-color: #eff7fa; padding: 1%;">
+        <div>
+
+          
+
+
+
+            <div class="py-12">
+                <div class="max-w-md mx-auto bg-white shadow-lg rounded-lg md:max-w-xl mx-2">
+                    <div class="md:flex ">
+                        <div class="w-full p-4 px-5 py-5">
+                            <div class="flex flex-row">
+                                <h2 class="text-3xl font-semibold">You're Almost There!</h2>
+                            </div>
+                            <form action = "/checkout", method = "post" id = "checkout-form">
+                                <div class="relative pb-5"> <input type="text" name="mail" class="border rounded h-10 w-full focus:outline-none focus:border-green-200 px-2 mt-2 text-sm" placeholder="E-mail"> </div> <span>Shipping Address</span>
+                                <div class="grid md:grid-cols-2 md:gap-2"> <input type="text" name="name" class="border rounded h-10 w-full focus:outline-none focus:border-green-200 px-2 mt-2 text-sm" placeholder="First name*"> <input type="text" name="mail" class="border rounded h-10 w-full focus:outline-none focus:border-green-200 px-2 mt-2 text-sm" placeholder="Last name*"> </div> <input type="text" name="mail" class="border rounded h-10 w-full focus:outline-none focus:border-green-200 px-2 mt-2 text-sm" placeholder="Company (optional)"> <input type="text" name="address" class="border rounded h-10 w-full focus:outline-none focus:border-green-200 px-2 mt-2 text-sm" placeholder="Address*"> <input type="text" name="mail" class="border rounded h-10 w-full focus:outline-none focus:border-green-200 px-2 mt-2 text-sm" placeholder="Apartment, suite, etc. (optional)">
+                                <div class="grid md:grid-cols-3 md:gap-2"> <input type="text" name="mail" class="border rounded h-10 w-full focus:outline-none focus:border-green-200 px-2 mt-2 text-sm" placeholder="Zipcode*"> <input type="text" name="mail" class="border rounded h-10 w-full focus:outline-none focus:border-green-200 px-2 mt-2 text-sm" placeholder="City*"> <input type="text" name="mail" class="border rounded h-10 w-full focus:outline-none focus:border-green-200 px-2 mt-2 text-sm" placeholder="State*"> </div> <input type="text" name="mail" class="border rounded h-10 w-full focus:outline-none focus:border-green-200 px-2 mt-2 text-sm" placeholder="Country*"> <input type="text" name="mail" class="border rounded h-10 w-full focus:outline-none focus:border-green-200 px-2 mt-2 text-sm" placeholder="Phone Number*">
+                                <div style = "text-align: center; padding: 2%;">
+                                    <h2 class="text-1xl font-semibold">Your Total : $<%=total%></h2>
+                                </div>
+                                <div class="flex justify-between items-center pt-2"> <a href = "/shopping-cart"><button type="button" class="h-12 w-24 text-info text-xs font-medium">Return to cart</button> </a> 
+                                    <button type="submit" class="h-12 w-48 rounded font-medium text-xs bg-info text-white">Confirm Order</button></div>
+                                    <input type = "hidden" name = "_csrf" value = "<%=token%>" >
+                            </form>                          
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr>
+    </body>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   <%- include('partials/footer') -%>

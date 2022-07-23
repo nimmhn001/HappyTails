@@ -1,0 +1,83 @@
+<%- include('partials/header') -%>
+  <!---------------------------Navigation bar------------------------------------>
+    <nav class = "navbar navbar-expand-lg"  style = "background-color: rgb(191, 232, 240);">
+        <a class = "head" href = "/"><h1 class = "brandname"><i class="fas fa-dog"></i>Happy Tails</h1></a>
+        <button class="navbar-toggler bg-success btn-outline-dark" style = "background-color: rgb(245, 237, 237); opacity: inherit; border-radius: 20%;"type="button" data-toggle="collapse" data-target="#navbarSupportedContent" >
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class = "navbar-nav ml-auto mt-2 mt-lg-0">
+                <li class = "nav-item">
+                    <a class = "nav-link" href = "/#footer">Contact</a>
+                </li>
+                 <li class = "nav-item">
+                    <a class = "nav-link" href = "/#pricing">Pricing</a>
+                </li>
+                 <li class = "nav-item">
+                    <a class = "nav-link" href = "/#cta">Download</a>
+                </li>
+                <li class = "nav-item">
+                    <a class = "nav-link" href = "/user/logout">Logout</a>
+                </li>
+                <li class = "nav-item">
+                    <a class = "nav-link" href = "/shopping-cart"> <i class="fas fa-shopping-cart fa-1.5x"></i>
+                        <%if(cart){%>
+                            <span class="badge badge-pill badge-success"><%=cart.totalQty%></span>
+                        <%}else{%>
+                            <span class="badge badge-pill badge-success">0</span>
+                        <%}%>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+        <!------------------------------------------------------------------------->
+
+
+        <body style =  "font-family:'Josefin Sans', sans-serif; padding: 1%;">
+            
+                <div class = "row" style = "padding: 3%;">
+                    <div class = "col-md-8 col-md-offset-2">
+                        <h1>Your Profile</h1>
+                        <hr style = "margin-bottom: 3%; border: 1px solid #1da370">
+
+                        <!-- about user -->
+                        <div class="card" style =  "border:  2px solid #1da370; ;margin-left: 0; width: 50%; ">
+                        <div class="card-body">
+                        <div class="d-flex">
+                            <img src="https://www.freeiconspng.com/thumbs/person-icon/clipart--person-icon--cliparts-15.png" alt="Admin" class="rounded-circle" width="120" style = "padding: 1%;">
+                            <div class="mt-3">
+                            <h4><%=user.name%></h4>
+                            <h4>Total Orders: <%=orders.length%> </h4>
+                            <p class="text-secondary mb-1">Username: <%=user.uname%></p>
+                                <a href = "/user/edit">Edit Details</a>  
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                        <h3>My Orders</h3>
+                        <% orders.forEach(function(order){%>
+                            <div class="panel panel-default" style = "padding: 1%;">
+                              <div class="panel-body">
+                                <ul class="list-group">
+                                    <% order.items.forEach(function(item){ %>
+                                        <li class="list-group-item d-flex justify-content-between align-items-center" style = "width: 50%; background-color:#eff7fa; font-size: 1.3rem;"> <%=item.item.name%> || Count - <%=item.qty%> <span class="badge badge-info"> $<%=item.price%> </span>
+                                        </li>
+                                    <%})%>
+                                    </ul>
+                              </div>
+                              <div style = "padding: 1%;" class = "pannel-footer">  <strong>TOTAL : $<%= order.cart.totalPrice%></strong><hr style = "border: 1px solid #1da370;"></div>
+                            </div>
+                        <%})%>
+                        <%if(orders.length == 0){%>
+                                <h4>You haven't ordered yet :)</h4>
+                                <h5>Check Pricing for latest prices and deals.</h5>
+                        <%}%>
+                    </div>
+                </div>
+        </body>
+        <hr style = "margin-bottom: 2%; margin-top: 10%;">
+        <%- include('partials/footer') -%>
+  
+

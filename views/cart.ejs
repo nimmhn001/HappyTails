@@ -1,0 +1,260 @@
+<%- include('partials/header') -%>
+  <!---------------------------Navigation bar------------------------------------>
+  <nav class = "navbar navbar-expand-lg"  style = "background-color: rgb(191, 232, 240);">
+    <a class = "head" href = "/"><h1 class = "brandname"><i class="fas fa-dog"></i>Happy Tails</h1></a>
+    <button class="navbar-toggler bg-success btn-outline-dark" style = "background-color: rgb(245, 237, 237); opacity: inherit; border-radius: 20%;"type="button" data-toggle="collapse" data-target="#navbarSupportedContent" >
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class = "navbar-nav ml-auto mt-2 mt-lg-0">
+            <li class = "nav-item active">
+                <a class = "nav-link" href = "/#footer">Contact</a>
+            </li>
+             <li class = "nav-item">
+                <a class = "nav-link" href = "/#pricing">Pricing</a>
+            </li>
+             <li class = "nav-item">
+                <a class = "nav-link" href = "/#cta">Download</a>
+            </li>
+              <%if(login){%>
+                <li class = "nav-item">
+                <div class="dropdown">
+                    <button class="nav-link btn dropdown-toggle" style = "font-size: 1.5rem;"type="button" id="dropdownMenuButton" data-toggle="dropdown">
+                    <i class="fas fa-user fa-1.5x"></i></button>
+                        <div class="dropdown-menu" style = "background-color: #eff7fa;">
+                        <a class = "nav-link" href = "/user/profile">My Profile</a>
+                        <div class="dropdown-divider" style = "border: 1px solid rgb(125, 223, 243);"></div>
+                        <a class = "nav-link" href = "/user/logout">Logout</a>
+                      </div>
+                    </div>
+                  </li>
+              <%}else{%>
+                  <li class = "nav-item">
+                    <a class = "nav-link" href = "/user/signup"><i class="fas fa-user fa-1.5x"></i></a>
+                </li>
+                <%}%> 
+          
+                <li class = "nav-item">
+                    <a class = "nav-link" href = "/shopping-cart"> <i class="fas fa-shopping-cart fa-1.5x"></i>
+                        <% if(cart){%>
+                            <span class="badge badge-pill badge-success"><%=cart.totalQty%></span>
+                        <%}else{%>
+                            <span class="badge badge-pill badge-success">0</span>
+                        <%}%>
+                    </a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<div class="pt-5" style = "padding-left: 1%;">
+  <h6 class="mb-0"><a href="/#pricing" class="text-body"><i class="fas fa-long-arrow-alt-left me-2"></i><strong>BACK TO SHOP</strong></a></h6>
+</div>
+
+    <!------------------------------------------------------------------------->
+    <link rel="stylesheet" href="/css/cart.css">
+    <body style="background-color: rgb(230, 250, 252); padding-top: 1%; padding-left: 1%; padding-right: 1%;">
+        <section class="h-100 h-custom">
+            <div class="container py-5 h-100">
+              <div class="row d-flex justify-content-center align-items-center">
+                <div class="col-12">
+                  <div class="card card-registration card-registration-2" style="border-radius: 15px; background-color: rgb(191, 232, 240);">
+                    <div class="card-body p-0">
+                      <div class="row g-0">
+                        <div class="col-lg-8">
+                          <div class="p-5">
+                            <div class="d-flex justify-content-between align-items-center mb-5">
+                              <h1 class="fw-bold mb-0 text-black">Shopping Cart</h1>
+                              <% if(cart){%>
+                              <h6 class="mb-0 text-muted"><%=cart.totalQty%> items</h6>
+                              <%}%>
+                            </div>
+                            <hr class="my-4">
+                            <% if(cartItems){ %>
+                                <%cartItems.forEach(function(cartItem){%>
+                            <div class="row mb-4 d-flex justify-content-between align-items-center">
+                              <div class="col-md-2 col-lg-2 col-xl-2">
+                                <img
+                                  src="<%=cartItem.item.imagePath%>" alt="pet" style = "height: 80%; width: 80%;">
+                              </div>
+                              <div class="col-md-3 col-lg-3 col-xl-3">
+                                <h6 class="text-black mb-0"><%=cartItem.item.name%></h6>
+                              </div>
+                              <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
+                                <button class="btn btn-link px-2">
+                                  <a href = "/reduce/<%=cartItem.item._id%>"><i class="fas fa-minus"></i></a>
+                                </button>
+
+                                <form action = "/qty/<%=cartItem.item._id%>" method = "post">
+                                <input name="quantity" type="number" min="0" value = <%=cartItem.qty%> />
+                                <input type = "submit" style = "visibility: hidden;">
+                                <input type = "hidden" name = "_csrf" value = "<%=token%>" >
+                                </form>
+
+                                <button class="btn btn-link px-2">
+                                  <a href = "/add/<%=cartItem.item._id%>"><i class="fas fa-plus"></i></a>
+                                </button>
+                              </div>
+                              <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
+                                <h6 class="mb-0">$ <%=cartItem.price%></h6>
+                              </div>
+                              <div class="col-md-1 col-lg-1 col-xl-1 text-end">
+                                <a href="/delete/<%=cartItem.item._id%>"" class="text-muted"><i class="fas fa-times"></i></a>
+                              </div>
+                            </div>
+                            <hr class="my-4">
+                            <%})%>
+
+                            <% if(cart.totalQty == 0){%>
+                              <div class="empty-cart-cls text-center">
+                                <img src="https://marigold.ie/images/empty-cart.png" width="130" height="130" class="img-fluid mb-4 mr-3">
+                                <h3><strong>Your Cart is Empty</strong></h3>
+                                <a href="/#pricing" class="btn btn-outline-dark cart-btn-transform m-3" data-abc="true">Continue Shopping</a>
+                              </div>
+                            <%}%>
+                            
+              
+                          </div>
+                        </div>
+                        <%if(cart && cart.totalQty > 0){%>
+                        <div class="col-lg-4" style = "background-color: rgb(16, 115, 172); color: white;">
+                          <div class="p-5">
+                            <h3 class="fw-bold mb-5 mt-2 pt-1 bg-grey">Summary</h3>
+                            <hr class="my-4">
+          
+                            <div class="d-flex justify-content-between mb-4">
+                              <h5 class="text-uppercase">items <%=cart.totalQty%></h5>
+                            </div>
+          
+                            <h5 class="text-uppercase mb-3">Shipping</h5>
+          
+                            <div class="mb-4 pb-3">
+                              <select class="select">
+                                <option value="1">STANDARD-DELIVERY- $5.00</option>
+                                <option value="2">COD</option>
+                                <option value="3">CARD PAYMENT</option>
+                                <option value="4">UPI PAYMENT</option>
+                              </select>
+                            </div>
+          
+                            <h5 class="text-uppercase mb-3">Give code</h5>
+          
+                            <div class="mb-5">
+                              <div class="form-outline">
+                                <input type="text" id="form3Examplea2" class="form-control form-control-lg" />
+                                <label class="form-label" for="form3Examplea2">Enter your Pin code</label>
+                              </div>
+                            </div>
+          
+                            <hr class="my-4">
+          
+                            <div class="d-flex justify-content-between mb-5">
+                              <h5 class="text-uppercase">Total price</h5>
+                              <h5>$ <%=cart.totalPrice%></h5>
+                            </div>
+                            <form action = "/checkout" method = "get"><button type="submit" class="btn btn-dark btn-block btn-lg"
+                              data-mdb-ripple-color="dark">PLACE ORDER</button></form> 
+                             <%}%>                   
+                              <%}else if(!cart || cart.totalQty == 0){%>
+                                <div class="empty-cart-cls text-center">
+                                  <img src="https://marigold.ie/images/empty-cart.png" width="130" height="130" class="img-fluid mb-4 mr-3">
+                                  <h3><strong>Your Cart is Empty</strong></h3>
+                                  <a href="/#pricing" class="btn btn-outline-dark cart-btn-transform m-3" data-abc="true">Continue Shopping</a>
+                                </div>
+                              <%}%>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+          <hr>
+    </body>
+ 
+
+    <%- include('partials/footer') -%>
+
+
+
+
+
+
+
+
+<!-- <body style = "background-color:  rgb(191, 232, 240); padding: 2%; font-family:'Josefin Sans', sans-serif; text-align: center;">
+    <div style = "padding: 3%">
+        <h1> Shopping cart </h1>
+        <% if(cartItems){ %>
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th scope="col">PRODUCT</th>
+                <th scope="col"> PRICE</th>
+                <th scope="col">QUANTITY</th>
+                <th scope="col"> NET PRICE</th>
+              </tr>
+            </thead>
+            <tbody>
+                <%cartItems.forEach(function(cartItem){%>
+                <tr>
+                    <td><%=cartItem.item.name%></td>
+                    <td><%=cartItem.item.price%></td>
+                    <td><%=cartItem.qty%></td>
+                    <td><%=cartItem.price%></td>
+                </tr>
+                <%})%>
+            </tbody>
+          </table>
+          <h3>TOTAL AMOUNT = $<%=totalPrice%></h3>
+          <%}else{%>
+            <h2>NO ITEMS IN YOUR CART!</h2>
+          <%}%>
+    
+    
+     
+       
+    
+    </div>
+
+    <div style = "position: absolute; bottom: 2%; left: 42%; text-align: center;">
+        <p class = "copy"><i class="far fa-copyright"></i> Copyright 2022 @HappyTails.com</p>
+        <i class="fab fa-twitter-square fa-2x footer-icon"></i>
+        <i class="fab fa-instagram fa-2x footer-icon"></i> 
+        <i class="fab fa-facebook fa-2x footer-icon"></i>
+        <i class="fas fa-envelope fa-2x footer-icon"></i>
+    </div>
+ 
+    
+</body> -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

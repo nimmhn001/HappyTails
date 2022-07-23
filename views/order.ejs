@@ -1,0 +1,43 @@
+<%- include('partials/head_admin') -%>
+
+<div class="sidebar">
+    <a href="/user/admin">Home</a>
+    <a  href="/user/users">Users</a>
+    <a class = "active" href="/user/orders">Orders</a>
+    <a href="/user/edit">Account</a>
+    <a href="/products">Products</a>
+</div>
+
+<div class="content">
+  <div class = "head-bar" style = "margin-bottom: 2%; margin-top: 1%;">
+    <nav class = "navbar navbar-expand-lg" >
+        <a class = "head" href = "/"><h1 class = "brandname"><i class="fas fa-dog"></i>Happy Tails</h1></a>
+    </nav>
+    <h2 class="font-weight-bold" style = "padding-left: 2%;">ADMIN PAGE</h2>
+    <hr>
+</div>
+   
+
+  <h2 style = "margin-bottom: 1%;">ORDERS</h2>
+    <h3>Total Number Of Orders: <%=orders.length%></h3>
+    
+        <%let cnt = 1%>
+      <ul class="list-group">
+        <%orders.forEach(function(order){%>
+            <li class="list-group-item"><%=cnt%> . Cust ID: <%=order.user%> &#160;&#160;&#160;&#160; Name of the payer: <%=order.name%>&#160;&#160;&#160;&#160; Order ID: <%=order._id%> &#160;&#160;&#160; Timestamp : <%=order.createdAt%> &#160;&#160;&#160; Status : DONE</li>
+            <li class = "list-group-item">Total : $<%=order.cart.totalPrice%></li>
+            <div class="dropdown-divider"></div>
+            <%cnt++%>
+        <%})%>
+     
+       
+      </ul>
+      </div>
+  
+
+
+</body>
+
+</html>
+
+<%- include('partials/footer') -%>

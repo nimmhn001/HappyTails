@@ -1,0 +1,81 @@
+
+  <%- include('partials/header') -%>
+  <!---------------------------Navigation bar------------------------------------>
+  <nav class = "navbar navbar-expand-lg"  style = "background-color: rgb(191, 232, 240);">
+    <a class = "head" href = "/"><h1 class = "brandname"><i class="fas fa-dog"></i>Happy Tails</h1></a>
+    <button class="navbar-toggler bg-success btn-outline-dark" style = "background-color: rgb(245, 237, 237); opacity: inherit; border-radius: 20%;"type="button" data-toggle="collapse" data-target="#navbarSupportedContent" >
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class = "navbar-nav ml-auto mt-2 mt-lg-0">
+            <li class = "nav-item active">
+                <a class = "nav-link" href = "/#footer">Contact</a>
+            </li>
+             <li class = "nav-item">
+                <a class = "nav-link" href = "/#pricing">Pricing</a>
+            </li>
+             <li class = "nav-item">
+                <a class = "nav-link" href = "/#cta">Download</a>
+            </li>
+            <li class = "nav-item">
+                <div class="dropdown">
+                    <button class="nav-link btn dropdown-toggle" style = "font-size: 1.5rem;"type="button" id="dropdownMenuButton" data-toggle="dropdown">
+                    <i class="fas fa-user fa-1.5x"></i></button>
+                    <div class="dropdown-menu" style = "background-color: #eff7fa;">
+                        <a class = "nav-link" href = "/user/profile">My Profile</a>
+                        <div class="dropdown-divider" style = "border: 1px solid rgb(125, 223, 243);"></div>
+                        <a class = "nav-link" href = "/user/logout">Logout</a>
+                    </div>
+                    </div>
+            </li>
+                <li class = "nav-item">
+                <a class = "nav-link" href = "/shopping-cart"> <i class="fas fa-shopping-cart fa-1.5x"></i>
+                    <% if(cart){%>
+                        <span class="badge badge-pill badge-success"><%=cart.totalQty%></span>
+                    <%}%>
+                </a>
+            </li>
+        </ul>
+    </div>
+</nav>
+    <!------------------------------------------------------------------------->
+    <body style = "padding: 1%;">
+        <div style = "background-color: #eff7fa; padding: 3%;">
+            <h6 class="mb-0"><a href="/#pricing" class="text-body"><i class="fas fa-long-arrow-alt-left me-2"></i><strong>BACK TO SHOP</strong></a></h6>
+              
+        
+            <!-- PRODUCT DESCRIPTION -->
+            <h1 style = "padding: 2%; font-family:'Josefin Sans', sans-serif;" ><%=item.name%></h1>
+            <div  class = "row">
+                <div class = "col-lg-6" style = "width : 35%; height: 35%; text-align: center;">
+                    <div class="card  border-dark" style = "font-family:'Josefin Sans', sans-serif;">
+                        <div class = "card-header">
+                            <h3><%=item.name%></h3>
+                            <img src = <%=item.imagePath%> class = "dog center">
+                        </div>
+                         <div class = "card-body">
+                            <h2>$<%=item.price%></h2>
+                            <form action = "/cart/<%=item._id%>" method = "get">
+                                <button type="submit" class="btn btn-info" style = "margin: 2%;" name = "product" value = "<%=item%>">Add to Cart</button>
+                            </form>
+                        </div>
+                    </div>    
+                </div>
+                <div class = "col-lg-6">
+                    <div style = "font-family:'Josefin Sans', sans-serif; padding: 3%; text-align: left; font-size: 27px;"  >
+                        <h3>Details</h3>
+                        <div style = "width: 100%; justify-content: center;"><p><%=item.details%></p></div>
+                        <p>Rating: <%=item.rating + "/10"%></p>
+                    </div> 
+                </div>
+            </div>
+            <hr>
+            <%- include('partials/footer') -%>
+            </div>
+    </body>
+  
+    
+   
+
+
+
