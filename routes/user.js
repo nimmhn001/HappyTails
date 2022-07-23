@@ -133,7 +133,6 @@ app.get("/orders", function(req, res){
 });
 
 app.get("/edit",  function(req, res, next){
-    // console.log("hello");
     var msg = req.flash('error')[0];
     res.render("signup", {token : req.csrfToken(), message:"", login: "Edit Details", route: "/user/edit", message: msg});
   });
@@ -146,11 +145,6 @@ app.get("/edit",  function(req, res, next){
     var fname = req.body.fname;
     var lname = req.body.lname;
     newName = fname;
-    console.log("fname - >", fname);
-    console.log("lname - > ", lname);
-    console.log("name - >", newName);
-    console.log("pwd - > ", newpwd);
-    console.log("uname - >", newUname);
     if(!newName|| !newUname || !newpwd || newUname.length < 4 || newpwd.length < 4)
     {
         req.flash('error', 'Invalid entry, use atleast 4 charachters for username & password');
@@ -159,8 +153,6 @@ app.get("/edit",  function(req, res, next){
     newpwd = req.user.encryptPassword(newpwd);
     fname = _.capitalize(fname);
     lname = _.capitalize(lname);
-    //console.log("fname - >", fname);
-    //console.log("lname - > ", lname);
     if(lname)
        newName = fname + " " +  lname;
     else
@@ -242,7 +234,6 @@ app.get("/profile", isLoggedIn, function(req, res, next)
 
 app.get("/logout", isLoggedIn, function(req, res, next)
 {
-    //console.log("logout - > ", req.session.cart);
     customer.findOneAndUpdate({uname: req.user.uname}, {$set: {cart: req.session.cart}}, function(err, result)
     {
         if(!err)
@@ -296,13 +287,11 @@ app.post("/signin", passport.authenticate("local.signin",
     failureFlash:true
 }), function(req, res, next)
 {
-   // console.log("here - > ", req.user);
     if(req.user.isAdmin)
         res.redirect("/user/admin");
     else
     {
         req.session.cart = req.user.cart;
-        //console.log("login - > ", req.session.cart);
         if(req.session.oldUrl)
         {
             res.redirect(req.session.oldUrl);
