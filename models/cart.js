@@ -39,10 +39,6 @@ module.exports = function Cart(oldCart)
     {
         var storedItem = this.items[id];
         var change = qty - storedItem.qty;
-        // console.log("stored qty - >", storedItem.qty);
-        // console.log("chnage - >", change);
-        // console.log("tp - > ", this.totalPrice);
-        // console.log("tq - >", this.totalQty);
         storedItem.qty = qty;
         storedItem.price = storedItem.qty * storedItem.item.price;
         if(this.totalPrice < 0)
