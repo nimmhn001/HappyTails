@@ -56,7 +56,7 @@ app.get("/sortName", function(req, res)
     var sort = { name: 1 };
     dbo.collection("customers").find().sort(sort).toArray(function(err, result) {
     if (err) throw err;
-    console.log(result);
+    //console.log(result);
     db.close();
     res.render("users", {users: result, arr: [], token: req.csrfToken(), flag : 1});
     });
@@ -99,8 +99,6 @@ app.post("/users", function(req, res, next)
         lname = _.capitalize(name.substr(st, i - st));
     if(lname)
         name = fname + " " + lname;
-    console.log("fname - >", fname);
-    console.log("lname - > ", lname);
     var arr = [];
     customer.find({}, function(err, users)
     {   
@@ -126,7 +124,7 @@ app.post("/users", function(req, res, next)
 app.get("/orders", function(req, res){
     Order.find({}, function(err, orders)
     {
-        console.log(orders);
+        //console.log(orders);
         if(!err)
             res.render("order", {orders: orders});
     });
@@ -179,17 +177,13 @@ app.get("/edit",  function(req, res, next){
             if(foundperson)
                 foundid += foundperson._id;
             thisid += req.user._id;
-            console.log("this - > ", thisid);
-            console.log("fd - > ", foundid);
             if(!foundperson || (foundid == thisid))
             {
-                console.log("hello");
                 customer.findByIdAndUpdate(req.user._id, {$set: {name: newName, uname: newUname, pwd: newpwd, fname: fname, lname: lname}}, {new: true},  function(err, result){});
                 res.redirect("/user/profile");
             }
             else if(foundperson._id != req.user._id)
             {
-                console.log("hmmm");
                 req.flash('error', 'Username is already in use.');
                 res.redirect('/user/edit');
             }
